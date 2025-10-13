@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fastapi-contacts-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
+    volumes:
+      - ./backend:/app
+      - ./backend/contacts.db:/app/contacts.db
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Optionnel : Ajouter PostgreSQL pour la production
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: fastapi-contacts-db
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER:-contacts_user}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-contacts_password}
+  #     POSTGRES_DB: ${POSTGRES_DB:-contacts_db}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
