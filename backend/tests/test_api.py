@@ -10,7 +10,7 @@ from sqlalchemy.pool import StaticPool
 from main import app
 from database import Base, get_db
 
-# Créer une base de données en mémoire pour les tests
+
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
 engine = create_engine(
@@ -19,9 +19,6 @@ engine = create_engine(
     poolclass=StaticPool,
 )
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Créer les tables
-Base.metadata.create_all(bind=engine)
 
 
 def override_get_db():
@@ -35,6 +32,16 @@ def override_get_db():
 
 app.dependency_overrides[get_db] = override_get_db
 
+
+@pytest.fixture(autouse=True)
+def reset_database():
+    """Réinitialiser la base de données avant chaque test"""
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+    yield
+    Base.metadata.drop_all(bind=engine)
+
+
 client = TestClient(app)
 
 
@@ -47,7 +54,7 @@ def test_user():
         "password": "testpassword123"
     }
     response = client.post("/register", json=user_data)
-    assert response.status_code == 201
+    assert response.status_code == 201, f"Failed to create test user: {response.json()}"
     return user_data
 
 
@@ -62,7 +69,7 @@ def auth_token(test_user):
     return response.json()["access_token"]
 
 
-# Tests de santé
+
 def test_health_check():
     """Test du endpoint de santé"""
     response = client.get("/health")
@@ -77,7 +84,7 @@ def test_root():
     assert "message" in response.json()
 
 
-# Tests d'authentification
+
 def test_register_user():
     """Test de l'inscription d'un utilisateur"""
     response = client.post(
@@ -151,7 +158,7 @@ def test_login_wrong_username():
     assert response.status_code == 401
 
 
-# Tests des contacts
+
 def test_create_contact(auth_token):
     """Test de création d'un contact"""
     response = client.post(
@@ -209,7 +216,7 @@ def test_get_contacts(auth_token):
 
 def test_get_contact_by_id(auth_token):
     """Test de récupération d'un contact par ID"""
-    # Créer un contact
+
     create_response = client.post(
         "/contacts/",
         json={
@@ -221,7 +228,6 @@ def test_get_contact_by_id(auth_token):
     )
     contact_id = create_response.json()["id"]
     
-    # Récupérer le contact
     response = client.get(
         f"/contacts/{contact_id}",
         headers={"Authorization": f"Bearer {auth_token}"}
@@ -242,7 +248,7 @@ def test_get_nonexistent_contact(auth_token):
 
 def test_update_contact(auth_token):
     """Test de mise à jour d'un contact"""
-    # Créer un contact
+
     create_response = client.post(
         "/contacts/",
         json={
@@ -254,7 +260,7 @@ def test_update_contact(auth_token):
     )
     contact_id = create_response.json()["id"]
     
-    # Mettre à jour le contact
+
     response = client.put(
         f"/contacts/{contact_id}",
         json={
@@ -271,7 +277,7 @@ def test_update_contact(auth_token):
 
 def test_delete_contact(auth_token):
     """Test de suppression d'un contact"""
-    # Créer un contact
+
     create_response = client.post(
         "/contacts/",
         json={
@@ -283,14 +289,14 @@ def test_delete_contact(auth_token):
     )
     contact_id = create_response.json()["id"]
     
-    # Supprimer le contact
+
     response = client.delete(
         f"/contacts/{contact_id}",
         headers={"Authorization": f"Bearer {auth_token}"}
     )
     assert response.status_code == 204
     
-    # Vérifier que le contact n'existe plus
+
     get_response = client.get(
         f"/contacts/{contact_id}",
         headers={"Authorization": f"Bearer {auth_token}"}
@@ -300,7 +306,7 @@ def test_delete_contact(auth_token):
 
 def test_user_isolation(auth_token):
     """Test que les utilisateurs ne peuvent voir que leurs propres contacts"""
-    # Créer un contact avec le premier utilisateur
+
     client.post(
         "/contacts/",
         json={
@@ -310,8 +316,8 @@ def test_user_isolation(auth_token):
         },
         headers={"Authorization": f"Bearer {auth_token}"}
     )
-    
-    # Créer un deuxième utilisateur
+
+
     client.post(
         "/register",
         json={
@@ -325,8 +331,8 @@ def test_user_isolation(auth_token):
         data={"username": "user2", "password": "password123"}
     )
     user2_token = login_response.json()["access_token"]
-    
-    # Vérifier que user2 ne voit pas les contacts de user1
+
+
     response = client.get(
         "/contacts/",
         headers={"Authorization": f"Bearer {user2_token}"}

@@ -20,7 +20,7 @@ router = APIRouter()
 @router.post("/register", response_model=schemas.User, status_code=status.HTTP_201_CREATED)
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     """Inscription d'un nouvel utilisateur"""
-    # Vérifier si l'utilisateur existe déjà
+   
     db_user = get_user_by_username(db, username=user.username)
     if db_user:
         raise HTTPException(
@@ -35,7 +35,7 @@ def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
             detail="Cet email est déjà utilisé"
         )
     
-    # Créer le nouvel utilisateur
+    
     hashed_password = get_password_hash(user.password)
     db_user = models.User(
         username=user.username,

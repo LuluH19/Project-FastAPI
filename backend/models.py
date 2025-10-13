@@ -11,7 +11,7 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     
-    # Relation avec les contacts
+    
     contacts = relationship("Contact", back_populates="owner", cascade="all, delete-orphan")
 
 
@@ -24,5 +24,5 @@ class Contact(Base):
     telephone = Column(String, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     
-    # Relation avec l'utilisateur propriétaire
+
     owner = relationship("User", back_populates="contacts")

@@ -9,12 +9,12 @@ import models
 import schemas
 from database import get_db
 
-# Configuration
+
 SECRET_KEY = "votre_cle_secrete_super_securisee_a_changer_en_production"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-# OAuth2 scheme
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 

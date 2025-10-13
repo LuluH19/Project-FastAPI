@@ -1,6 +1,6 @@
 import { Contact, ContactCreate, Token, UserRegister, UserLogin } from './types';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = process.env.API_URL 
 
 // Auth API
 export const registerUser = async (data: UserRegister): Promise<void> => {

@@ -2,7 +2,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
-# Schémas pour User
+
 class UserBase(BaseModel):
     username: str
     email: EmailStr
@@ -24,7 +24,7 @@ class User(UserBase):
         from_attributes = True
 
 
-# Schémas pour Contact
+
 class ContactBase(BaseModel):
     nom: str
     email: EmailStr
@@ -49,7 +49,6 @@ class Contact(ContactBase):
         from_attributes = True
 
 
-# Schéma pour le token JWT
 class Token(BaseModel):
     access_token: str
     token_type: str

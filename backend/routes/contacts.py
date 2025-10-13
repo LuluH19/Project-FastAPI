@@ -79,7 +79,6 @@ def update_contact(
             detail="Contact non trouvé"
         )
     
-    # Mettre à jour uniquement les champs fournis
     update_data = contact_update.dict(exclude_unset=True)
     for field, value in update_data.items():
         setattr(contact, field, value)

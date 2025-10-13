@@ -3,20 +3,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
 from routes import auth, contacts
 
-# Créer les tables dans la base de données
+
 Base.metadata.create_all(bind=engine)
 
-# Créer l'application FastAPI
+
 app = FastAPI(
     title="API de Gestion de Contacts",
     description="Une API REST pour gérer vos contacts avec authentification JWT",
     version="1.0.0"
 )
 
-# Configuration CORS (à adapter selon vos besoins)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En production, spécifiez les origines autorisées
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
