@@ -59,7 +59,7 @@ Si vous utilisez le frontend, configurez l'URL de l'API dans `frontend/src/.env`
 # Pour le développement local
 API_URL = 'http://127.0.0.1:8000';
 
-# Pour la production (Render)
+# Pour la production (Render) en ligne mais non fonctionnelle
 API_URL = 'https://project-fastapi-f6xx.onrender.com';
 ```
 
