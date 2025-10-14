@@ -1,6 +1,6 @@
 import { Contact, ContactCreate, Token, UserRegister, UserLogin } from './types';
 
-const API_URL = process.env.API_URL 
+const API_URL = process.env.REACT_APP_API_URL || 'https://project-fastapi-f6xx.onrender.com';
 
 // Auth API
 export const registerUser = async (data: UserRegister): Promise<void> => {
