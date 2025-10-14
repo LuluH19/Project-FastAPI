@@ -51,7 +51,23 @@ venv\Scripts\activate  # Sur Windows
 pip install -r requirements.txt
 ```
 
-## 🚀 Lancement de l'application
+### 4. Configuration du Frontend
+
+Si vous utilisez le frontend, configurez l'URL de l'API dans `frontend/src/.env` :
+
+```bash
+# Pour le développement local
+API_URL = 'http://127.0.0.1:8000';
+
+# Pour la production (Render)
+API_URL = 'https://project-fastapi-f6xx.onrender.com';
+```
+
+Un fichier `.env.example` est fourni comme référence.
+
+## Lancement de l'application
+
+### Développement local
 
 ```bash
 uvicorn main:app --reload
@@ -59,11 +75,20 @@ uvicorn main:app --reload
 
 L'API sera accessible à l'adresse : `http://localhost:8000`
 
+### Production
+
+L'API est déployée sur Render et accessible à l'adresse :
+**https://project-fastapi-f6xx.onrender.com**
+
 ## Documentation
 
+### Développement local
 Une fois l'application lancée, accédez à :
 - **Swagger UI** : http://localhost:8000/docs
-- **ReDoc** : http://localhost:8000/redoc
+
+### Production
+Accédez à la documentation de l'API en production :
+- **Swagger UI** : https://project-fastapi-f6xx.onrender.com/docs
 
 ## Utilisation de l'API
 
@@ -153,7 +178,7 @@ Authorization: Bearer <votre_token>
 - **IMPORTANT** : Changez la `SECRET_KEY` dans `auth.py` avant de déployer en production !
 
 
-## 📝 Modèles de données
+## Modèles de données
 
 ### User
 - `id` : Identifiant unique
@@ -168,7 +193,7 @@ Authorization: Bearer <votre_token>
 - `telephone` : Numéro de téléphone
 - `user_id` : Référence à l'utilisateur propriétaire
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 - **FastAPI** : Framework web moderne et rapide
 - **SQLAlchemy** : ORM pour la gestion de la base de données
@@ -177,6 +202,6 @@ Authorization: Bearer <votre_token>
 - **passlib** : Hachage des mots de passe
 - **uvicorn** : Serveur ASGI
 
-## 📄 Licence
+## Licence
 
 Ce projet est libre d'utilisation pour vos projets personnels et commerciaux.

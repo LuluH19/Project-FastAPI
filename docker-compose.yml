@@ -18,24 +18,6 @@ services:
     networks:
       - app-network
 
-  # Optionnel : Ajouter PostgreSQL pour la production
-  # db:
-  #   image: postgres:15-alpine
-  #   container_name: fastapi-contacts-db
-  #   environment:
-  #     POSTGRES_USER: ${POSTGRES_USER:-contacts_user}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-contacts_password}
-  #     POSTGRES_DB: ${POSTGRES_DB:-contacts_db}
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - app-network
-
 networks:
   app-network:
     driver: bridge
-
-# volumes:
-#   postgres_data:

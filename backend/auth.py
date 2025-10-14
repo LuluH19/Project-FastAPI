@@ -5,12 +5,16 @@ import bcrypt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
+import os
+from dotenv import load_dotenv
 import models
 import schemas
 from database import get_db
 
 
-SECRET_KEY = "votre_cle_secrete_super_securisee_a_changer_en_production"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "secret_key")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

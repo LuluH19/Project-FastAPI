@@ -1,12 +1,12 @@
-# 📇 Application de Gestion de Contacts
+#  Application de Gestion de Contacts
 
 Application web complète de gestion de contacts avec authentification sécurisée.
 
-## 📖 Description du Projet
+## Description du Projet
 
 Ce projet est une **application full-stack** permettant de gérer vos contacts personnels de manière sécurisée. Chaque utilisateur peut créer un compte, se connecter et gérer sa propre liste de contacts (ajout, modification, suppression).
 
-### 🎯 Objectif
+### Objectif
 Créer une solution simple et efficace pour organiser vos contacts avec une interface moderne et une API robuste.
 
 ## 🏗️ Architecture
@@ -28,30 +28,30 @@ Le projet est divisé en deux parties :
 - **Styling** : CSS3 avec animations
 - **Design** : Interface responsive et moderne
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
-### 🔐 Authentification
-- ✅ Inscription avec validation (username, email, mot de passe)
-- ✅ Connexion sécurisée avec token JWT
-- ✅ Déconnexion avec nettoyage du localStorage
-- ✅ Protection des routes avec authentification
+### Authentification
+-  Inscription avec validation (username, email, mot de passe)
+-  Connexion sécurisée avec token JWT
+-  Déconnexion avec nettoyage du localStorage
+-  Protection des routes avec authentification
 
-### 📇 Gestion des Contacts
-- ✅ **Créer** un nouveau contact (nom, email, téléphone)
-- ✅ **Afficher** la liste de tous vos contacts
-- ✅ **Modifier** les informations d'un contact
-- ✅ **Supprimer** un contact (avec confirmation)
-- ✅ Chaque utilisateur voit uniquement ses propres contacts
+### Gestion des Contacts
+-  **Créer** un nouveau contact (nom, email, téléphone)
+-  **Afficher** la liste de tous vos contacts
+-  **Modifier** les informations d'un contact
+-  **Supprimer** un contact (avec confirmation)
+-  Chaque utilisateur voit uniquement ses propres contacts
 
-### 🎨 Interface Utilisateur
-- ✅ Design moderne avec dégradés et animations
-- ✅ Responsive (mobile, tablette, desktop)
-- ✅ Formulaires inline intuitifs
-- ✅ Cartes de contacts avec effet hover
-- ✅ Messages d'erreur clairs
-- ✅ Feedback visuel sur les actions
+### Interface Utilisateur
+-  Design moderne avec dégradés et animations
+-  Responsive (mobile, tablette, desktop)
+-  Formulaires inline intuitifs
+-  Cartes de contacts avec effet hover
+-  Messages d'erreur clairs
+-  Feedback visuel sur les actions
 
-## 🚀 Installation et Lancement
+## Installation et Lancement
 
 ### Prérequis
 - Python 3.8+
@@ -162,12 +162,12 @@ Project-FastAPI/
 
 ## 🔒 Sécurité
 
-- ✅ Mots de passe hashés (bcrypt)
-- ✅ Tokens JWT avec expiration (30 minutes)
-- ✅ CORS configuré
-- ✅ Validation des données (Pydantic)
-- ✅ Protection des endpoints
-- ✅ Isolation des données utilisateur
+-  Mots de passe hashés (bcrypt)
+-  Tokens JWT avec expiration (30 minutes)
+-  CORS configuré
+-  Validation des données (Pydantic)
+-  Protection des endpoints
+-  Isolation des données utilisateur
 
 ⚠️ **Important** : Changez la `SECRET_KEY` dans `backend/auth.py` avant tout déploiement en production !
 
