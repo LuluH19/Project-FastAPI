@@ -2,15 +2,15 @@
 
 Une API REST complète pour gérer vos contacts avec authentification JWT.
 
-## 🚀 Fonctionnalités
+##  Fonctionnalités
 
-- ✅ **Authentification JWT** : Inscription et connexion sécurisées
-- ✅ **Gestion des contacts** : CRUD complet (Créer, Lire, Mettre à jour, Supprimer)
-- ✅ **Sécurité** : Mots de passe hashés avec bcrypt
-- ✅ **Base de données SQLite** : Simple et facile à utiliser
-- ✅ **Documentation automatique** : Swagger UI et ReDoc
+-  **Authentification JWT** : Inscription et connexion sécurisées
+-  **Gestion des contacts** : CRUD complet (Créer, Lire, Mettre à jour, Supprimer)
+-  **Sécurité** : Mots de passe hashés avec bcrypt
+-  **Base de données SQLite** : Simple et facile à utiliser
+-  **Documentation automatique** : Swagger UI et ReDoc
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 Project-FastAPI/
@@ -59,13 +59,13 @@ uvicorn main:app --reload
 
 L'API sera accessible à l'adresse : `http://localhost:8000`
 
-## 📚 Documentation
+## Documentation
 
 Une fois l'application lancée, accédez à :
 - **Swagger UI** : http://localhost:8000/docs
 - **ReDoc** : http://localhost:8000/redoc
 
-## 🔐 Utilisation de l'API
+## Utilisation de l'API
 
 ### 1. Inscription d'un utilisateur
 
@@ -145,41 +145,13 @@ DELETE /contacts/{contact_id}
 Authorization: Bearer <votre_token>
 ```
 
-## 🔒 Sécurité
+## Sécurité
 
 - Les mots de passe sont hashés avec bcrypt
 - L'authentification utilise JWT (JSON Web Tokens)
 - Chaque utilisateur ne peut accéder qu'à ses propres contacts
-- **⚠️ IMPORTANT** : Changez la `SECRET_KEY` dans `auth.py` avant de déployer en production !
+- **IMPORTANT** : Changez la `SECRET_KEY` dans `auth.py` avant de déployer en production !
 
-```python
-# Dans auth.py, ligne 13
-SECRET_KEY = "votre_cle_secrete_super_securisee_a_changer_en_production"
-```
-
-## 🧪 Tests avec cURL
-
-### Inscription
-```bash
-curl -X POST "http://localhost:8000/register" \
-  -H "Content-Type: application/json" \
-  -d '{"username":"test","email":"test@example.com","password":"test123"}'
-```
-
-### Connexion
-```bash
-curl -X POST "http://localhost:8000/login" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "username=test&password=test123"
-```
-
-### Créer un contact (remplacez TOKEN par votre token)
-```bash
-curl -X POST "http://localhost:8000/contacts/" \
-  -H "Authorization: Bearer TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"nom":"Jean Dupont","email":"jean@example.com","telephone":"0612345678"}'
-```
 
 ## 📝 Modèles de données
 
