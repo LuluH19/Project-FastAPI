@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional
-from jose import JWTError, jwt
+import jwt
+from jwt.exceptions import InvalidTokenError
 import bcrypt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
@@ -81,7 +82,7 @@ async def get_current_user(
         if username is None:
             raise credentials_exception
         token_data = schemas.TokenData(username=username)
-    except JWTError:
+    except InvalidTokenError:
         raise credentials_exception
     
     user = get_user_by_username(db, username=token_data.username)

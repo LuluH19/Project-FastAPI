@@ -198,7 +198,7 @@ Authorization: Bearer <votre_token>
 - **FastAPI** : Framework web moderne et rapide
 - **SQLAlchemy** : ORM pour la gestion de la base de données
 - **Pydantic** : Validation des données
-- **python-jose** : Gestion des JWT
+- **PyJWT** : Gestion des JWT
 - **passlib** : Hachage des mots de passe
 - **uvicorn** : Serveur ASGI
 
